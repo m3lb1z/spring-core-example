@@ -13,8 +13,7 @@ public class Motor {
     public Motor() {
     }
 
-    @Autowired
-    public Motor(@Value("Xl1") String marca, @Value("1982") Integer modelo) {
+    public Motor(String marca, Integer modelo) {
         this.marca = marca;
         this.modelo = modelo;
     }
@@ -23,6 +22,7 @@ public class Motor {
         return marca;
     }
 
+    @Value("Xl1")
     public void setMarca(String marca) {
         this.marca = marca;
     }
@@ -31,6 +31,7 @@ public class Motor {
         return modelo;
     }
 
+    @Value("1982")
     public void setModelo(Integer modelo) {
         this.modelo = modelo;
     }
