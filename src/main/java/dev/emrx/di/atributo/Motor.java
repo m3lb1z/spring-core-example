@@ -1,20 +1,20 @@
 package dev.emrx.di.atributo;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Motor {
 
-    @Value("Xl1")
     private String marca;
-    @Value("1982")
     private Integer modelo;
 
     public Motor() {
     }
 
-    public Motor(String marca, Integer modelo) {
+    @Autowired
+    public Motor(@Value("Xl1") String marca, @Value("1982") Integer modelo) {
         this.marca = marca;
         this.modelo = modelo;
     }
