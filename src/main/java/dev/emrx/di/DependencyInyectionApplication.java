@@ -2,6 +2,7 @@ package dev.emrx.di;
 
 import dev.emrx.di.atributo.Coche;
 import dev.emrx.di.atributo.Motor;
+import dev.emrx.di.autowire.AreaCalculatorService;
 import dev.emrx.di.profiles.EnvironmentService;
 import dev.emrx.di.qualifiers.*;
 import dev.emrx.di.scopes.EjemploScopeService;
@@ -25,9 +26,9 @@ public class DependencyInyectionApplication {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(DependencyInyectionApplication.class, args);
-        String nombreDeAplicacion = context.getBean(String.class);
+        AreaCalculatorService calculator = context.getBean(AreaCalculatorService.class);
 
-        log.info("Nombre de la aplicación: {}", nombreDeAplicacion);
+        log.info("Area total: {}", calculator.calcAreas());
     }
 
 }
