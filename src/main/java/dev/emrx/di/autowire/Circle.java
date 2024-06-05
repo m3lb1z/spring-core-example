@@ -8,7 +8,7 @@ import static java.lang.Math.*;
 @Component
 public class Circle implements Figure {
 
-    @Value("2.5")
+    @Value("${circle.radius:0}")
     private double radius;
 
     @Override
