@@ -2,6 +2,7 @@ package dev.emrx.di;
 
 import dev.emrx.di.atributo.Coche;
 import dev.emrx.di.atributo.Motor;
+import dev.emrx.di.profiles.EnvironmentService;
 import dev.emrx.di.qualifiers.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,16 +19,9 @@ public class DependencyInyectionApplication {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(DependencyInyectionApplication.class, args);
-//        Coche coche = context.getBean(Coche.class);
+        EnvironmentService env = context.getBean(EnvironmentService.class);
+        log.info("Environment: {}", env.getEnvironment());
 
-        Perro perro = context.getBean(Perro.class);
-        log.info("Objeto perro: {}", perro.getNombre());
-
-        Granja granja = context.getBean(Granja.class);
-        granja.imprimir();
-
-        Volador avion = context.getBean("avion", Volador.class);
-        avion.volar();
     }
 
 }
