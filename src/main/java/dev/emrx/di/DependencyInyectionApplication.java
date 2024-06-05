@@ -3,6 +3,8 @@ package dev.emrx.di;
 import dev.emrx.di.atributo.Coche;
 import dev.emrx.di.atributo.Motor;
 import dev.emrx.di.autowire.AreaCalculatorService;
+import dev.emrx.di.lifecycle.ExplicitBean;
+import dev.emrx.di.lifecycle.LifeCycleBean;
 import dev.emrx.di.profiles.EnvironmentService;
 import dev.emrx.di.qualifiers.*;
 import dev.emrx.di.scopes.EjemploScopeService;
@@ -27,19 +29,14 @@ public class DependencyInyectionApplication {
         return "Spring Core learning";
     }
 
+    @Bean(initMethod = "init", destroyMethod = "destroy")
+    public ExplicitBean getBean() {
+        return new ExplicitBean();
+    }
+
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(DependencyInyectionApplication.class, args);
-        AreaCalculatorService calculator = context.getBean(AreaCalculatorService.class);
-
-        log.info("Area total: {}", calculator.calcAreas());
-
-        ExpressionParser parser = new SpelExpressionParser();
-        Expression expression = parser.parseExpression("10 * 20");
-        log.info("Resultado de la expresion: {}", expression.getValue());
-        expression = parser.parseExpression("10 == 20");
-        log.info("Resultado de la expresion: {}", expression.getValue());
-        expression = parser.parseExpression("10 <= 20");
-        log.info("Resultado de la expresion: {}", expression.getValue());
+        LifeCycleBean bean = context.getBean(LifeCycleBean.class);
     }
 
 }
