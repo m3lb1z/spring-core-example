@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Scope("singleton")  // default scope singleton
-@Lazy(false) // default singleton is eager
+@Lazy // default singleton is eager
 public class LifeCycleBean implements BeanNameAware, InitializingBean, DisposableBean {
 
     private static final Logger log = LoggerFactory.getLogger(LifeCycleBean.class);
