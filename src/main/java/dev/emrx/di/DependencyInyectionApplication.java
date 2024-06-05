@@ -4,6 +4,7 @@ import dev.emrx.di.atributo.Coche;
 import dev.emrx.di.atributo.Motor;
 import dev.emrx.di.profiles.EnvironmentService;
 import dev.emrx.di.qualifiers.*;
+import dev.emrx.di.scopes.EjemploScopeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -19,8 +20,11 @@ public class DependencyInyectionApplication {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(DependencyInyectionApplication.class, args);
-        EnvironmentService env = context.getBean(EnvironmentService.class);
-        log.info("Environment: {}", env.getEnvironment());
+        EjemploScopeService ejemploScopeService1 = context.getBean(EjemploScopeService.class);
+        EjemploScopeService ejemploScopeService2 = context.getBean(EjemploScopeService.class);
+
+        log.info("Are beans equal {}", ejemploScopeService1.equals(ejemploScopeService2));
+        log.info("Are beans == {}", ejemploScopeService1 == ejemploScopeService2);
 
     }
 
